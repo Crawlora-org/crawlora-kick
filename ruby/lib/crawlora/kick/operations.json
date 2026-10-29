@@ -1,0 +1,864 @@
+{
+  "platform": "kick",
+  "operationCount": 21,
+  "operationIds": [
+    "kick-categories",
+    "kick-category-clips",
+    "kick-channel",
+    "kick-channel-chatroom",
+    "kick-channel-clips",
+    "kick-channel-emotes",
+    "kick-channel-links",
+    "kick-channel-streams",
+    "kick-channel-videos",
+    "kick-clip",
+    "kick-clips",
+    "kick-drops",
+    "kick-gifts",
+    "kick-languages",
+    "kick-livestreams",
+    "kick-search-categories",
+    "kick-search-channels",
+    "kick-subcategories",
+    "kick-subcategory",
+    "kick-top-channels",
+    "kick-video"
+  ],
+  "methods": {
+    "categories": "kick-categories",
+    "category_clips": "kick-category-clips",
+    "channel": "kick-channel",
+    "channel_chatroom": "kick-channel-chatroom",
+    "channel_clips": "kick-channel-clips",
+    "channel_emotes": "kick-channel-emotes",
+    "channel_links": "kick-channel-links",
+    "channel_streams": "kick-channel-streams",
+    "channel_videos": "kick-channel-videos",
+    "clip": "kick-clip",
+    "clips": "kick-clips",
+    "drops": "kick-drops",
+    "gifts": "kick-gifts",
+    "languages": "kick-languages",
+    "livestreams": "kick-livestreams",
+    "search_categories": "kick-search-categories",
+    "search_channels": "kick-search-channels",
+    "subcategories": "kick-subcategories",
+    "subcategory": "kick-subcategory",
+    "top_channels": "kick-top-channels",
+    "video": "kick-video"
+  },
+  "operations": {
+    "kick-categories": {
+      "id": "kick-categories",
+      "method": "GET",
+      "path": "/kick/categories",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-category-clips": {
+      "id": "kick-category-clips",
+      "method": "GET",
+      "path": "/kick/category-clips",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Category slug from kick-subcategories or kick-search-categories, lowercase; a kick.com/category URL is also accepted",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "just-chatting"
+        },
+        {
+          "description": "Previous response's next_cursor; omit for the newest page",
+          "in": "query",
+          "name": "cursor",
+          "type": "string",
+          "x-example": "clip_01M5TR7FRZPCDA6BS1NP7HKV4T"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-channel": {
+      "id": "kick-channel",
+      "method": "GET",
+      "path": "/kick/channel",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "xqc"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-channel-chatroom": {
+      "id": "kick-channel-chatroom",
+      "method": "GET",
+      "path": "/kick/channel-chatroom",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "xqc"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-channel-clips": {
+      "id": "kick-channel-clips",
+      "method": "GET",
+      "path": "/kick/channel-clips",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "cursor",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "xqc"
+        },
+        {
+          "description": "Previous response's next_cursor; omit for the newest page",
+          "in": "query",
+          "name": "cursor",
+          "type": "string",
+          "x-example": "abc"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-channel-emotes": {
+      "id": "kick-channel-emotes",
+      "method": "GET",
+      "path": "/kick/channel-emotes",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "xqc"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-channel-links": {
+      "id": "kick-channel-links",
+      "method": "GET",
+      "path": "/kick/channel-links",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "xqc"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-channel-streams": {
+      "id": "kick-channel-streams",
+      "method": "GET",
+      "path": "/kick/channel-streams",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "xqc"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-channel-videos": {
+      "id": "kick-channel-videos",
+      "method": "GET",
+      "path": "/kick/channel-videos",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "xqc"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-clip": {
+      "id": "kick-clip",
+      "method": "GET",
+      "path": "/kick/clip",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Clip id from kick-clips' or kick-channel-clips' own clips[].id field",
+          "in": "query",
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "x-example": "clip_01M5SKVA6GGAAAT5YPJ7J43WE4"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-clips": {
+      "id": "kick-clips",
+      "method": "GET",
+      "path": "/kick/clips",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "date",
+            "views"
+          ]
+        },
+        {
+          "name": "time",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "day",
+            "week",
+            "month",
+            "all"
+          ]
+        },
+        {
+          "name": "cursor",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Ordering: date is newest first (default), views ranks by views inside the time window",
+          "enum": [
+            "date",
+            "views"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string",
+          "x-example": "views"
+        },
+        {
+          "description": "Window that views ranks within; omit for Kick's default window",
+          "enum": [
+            "day",
+            "week",
+            "month",
+            "all"
+          ],
+          "in": "query",
+          "name": "time",
+          "type": "string",
+          "x-example": "week"
+        },
+        {
+          "description": "Previous response's next_cursor; omit for the first page",
+          "in": "query",
+          "name": "cursor",
+          "type": "string",
+          "x-example": "abc"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-drops": {
+      "id": "kick-drops",
+      "method": "GET",
+      "path": "/kick/drops",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "status",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "active",
+            "expired",
+            "all"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Which campaigns to return: active (default), expired or all",
+          "enum": [
+            "active",
+            "expired",
+            "all"
+          ],
+          "in": "query",
+          "name": "status",
+          "type": "string",
+          "x-example": "active"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-gifts": {
+      "id": "kick-gifts",
+      "method": "GET",
+      "path": "/kick/gifts",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-languages": {
+      "id": "kick-languages",
+      "method": "GET",
+      "path": "/kick/languages",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-livestreams": {
+      "id": "kick-livestreams",
+      "method": "GET",
+      "path": "/kick/livestreams",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "sort",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "viewer_count_desc",
+            "featured"
+          ]
+        },
+        {
+          "name": "language",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "category_id",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "after",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Ordering: viewer_count_desc is most viewers first (default), featured is Kick's featured order",
+          "enum": [
+            "viewer_count_desc",
+            "featured"
+          ],
+          "in": "query",
+          "name": "sort",
+          "type": "string",
+          "x-example": "viewer_count_desc"
+        },
+        {
+          "description": "Stream language code such as en, ja, es, pt-BR, optionally with a region (2 to 3 letters, then an optional 2 to 4 letter region); see kick-languages for the codes Kick lists",
+          "in": "query",
+          "name": "language",
+          "type": "string",
+          "x-example": "ja"
+        },
+        {
+          "description": "Category id from kick-subcategories' or kick-search-categories' own id field",
+          "in": "query",
+          "name": "category_id",
+          "type": "integer",
+          "x-example": 15
+        },
+        {
+          "description": "Page size, 1 to 100; defaults to 24",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 24
+        },
+        {
+          "description": "Previous response's next_cursor; omit for the first page",
+          "in": "query",
+          "name": "after",
+          "type": "string",
+          "x-example": "eyJvIjoxfQ"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-search-categories": {
+      "id": "kick-search-categories",
+      "method": "GET",
+      "path": "/kick/search-categories",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "query",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Category name to search for, up to 100 characters",
+          "in": "query",
+          "name": "query",
+          "required": true,
+          "type": "string",
+          "x-example": "chat"
+        },
+        {
+          "description": "Maximum results, 1 to 100; defaults to 10",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 10
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-search-channels": {
+      "id": "kick-search-channels",
+      "method": "GET",
+      "path": "/kick/search-channels",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "query",
+          "in": "query",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "live",
+          "in": "query",
+          "type": "boolean"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Channel name to search for, up to 100 characters",
+          "in": "query",
+          "name": "query",
+          "required": true,
+          "type": "string",
+          "x-example": "xqc"
+        },
+        {
+          "description": "Only channels live now",
+          "in": "query",
+          "name": "live",
+          "type": "boolean",
+          "x-example": true
+        },
+        {
+          "description": "Maximum results, 1 to 100; defaults to 10",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 10
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-subcategories": {
+      "id": "kick-subcategories",
+      "method": "GET",
+      "path": "/kick/subcategories",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "category",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "games",
+            "irl",
+            "music",
+            "gambling",
+            "creative",
+            "alternative",
+            "chat-roulette"
+          ]
+        },
+        {
+          "name": "page",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Top-level category slug from kick-categories; a parent Kick adds later is also accepted once it appears there",
+          "enum": [
+            "games",
+            "irl",
+            "music",
+            "gambling",
+            "creative",
+            "alternative",
+            "chat-roulette"
+          ],
+          "in": "query",
+          "name": "category",
+          "type": "string",
+          "x-example": "irl"
+        },
+        {
+          "description": "Page number, 1 to 20; defaults to 1",
+          "in": "query",
+          "name": "page",
+          "type": "integer",
+          "x-example": 1
+        },
+        {
+          "description": "Page size, 1 to 32; defaults to 24",
+          "in": "query",
+          "name": "limit",
+          "type": "integer",
+          "x-example": 10
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-subcategory": {
+      "id": "kick-subcategory",
+      "method": "GET",
+      "path": "/kick/subcategory",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "slug",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Category slug from kick-subcategories' or kick-search-categories' own slug field",
+          "in": "query",
+          "name": "slug",
+          "required": true,
+          "type": "string",
+          "x-example": "just-chatting"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-top-channels": {
+      "id": "kick-top-channels",
+      "method": "GET",
+      "path": "/kick/top-channels",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "kick-video": {
+      "id": "kick-video",
+      "method": "GET",
+      "path": "/kick/video",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "id",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Video uuid (36 characters) from kick-channel-videos or kick-channel-streams, or a kick.com video URL",
+          "in": "query",
+          "name": "id",
+          "required": true,
+          "type": "string",
+          "x-example": "eb707c31-208b-4737-8bcf-a5c9fd187e82"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    }
+  }
+}

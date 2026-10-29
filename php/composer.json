@@ -1,0 +1,45 @@
+{
+  "name": "crawlora/kick",
+  "description": "Crawlora Kick API client with 21 endpoints for channels, livestreams, clips, categories, search, and public mobile-app catalogues",
+  "keywords": [
+    "crawlora",
+    "api-client",
+    "sdk",
+    "web-scraping",
+    "scraping-api",
+    "kick",
+    "kick-api",
+    "kick-scraper",
+    "kick-data",
+    "kick-channels",
+    "kick-livestreams",
+    "kick-clips",
+    "kick-categories",
+    "kick-search"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.1",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Crawlora\\Kick\\": "src/Crawlora/Kick/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Crawlora\\Kick\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "php tests/client_test.php"
+  },
+  "homepage": "https://crawlora.net/?utm_source=packagist&utm_medium=referral&utm_campaign=platform-clients&utm_content=kick-php-homepage",
+  "support": {
+    "source": "https://github.com/Crawlora-org/crawlora-kick",
+    "docs": "https://crawlora.net/docs?utm_source=packagist&utm_medium=referral&utm_campaign=platform-clients&utm_content=kick-php-api-docs"
+  }
+}

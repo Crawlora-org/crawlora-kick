@@ -1,0 +1,2752 @@
+{
+  "basePath": "/api/v1",
+  "definitions": {
+    "app.Response": {
+      "description": "The Response struct is used for wrapping the API response with a code, message, and data.",
+      "properties": {
+        "code": {
+          "description": "Code is the HTTP status code or a custom code used to indicate the result of the request\n@example 200",
+          "type": "integer"
+        },
+        "data": {
+          "description": "Data is the response data (can be any object or null)\n@example {\"id\": 1, \"name\": \"John Doe\"}"
+        },
+        "msg": {
+          "description": "Msg is the message that describes the result of the request\n@example \"Request successful\""
+        }
+      },
+      "type": "object"
+    },
+    "kick.CategoriesResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/kick.Category"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "kick.Category": {
+      "properties": {
+        "icon": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.CategoryHit": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "mature": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "thumbnail_url": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "viewers": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.CategoryRef": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChannelChatroomResponse": {
+      "properties": {
+        "account_age": {
+          "$ref": "#/definitions/kick.ChatMode"
+        },
+        "chatroom_id": {
+          "type": "integer"
+        },
+        "emotes_only": {
+          "$ref": "#/definitions/kick.ChatMode"
+        },
+        "followers_only": {
+          "$ref": "#/definitions/kick.ChatMode"
+        },
+        "gifts_enabled": {
+          "type": "boolean"
+        },
+        "rules": {
+          "description": "Rules is the channel's chat rules text; empty when none are set.",
+          "type": "string"
+        },
+        "slow_mode": {
+          "$ref": "#/definitions/kick.ChatMode"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "subscribers_only": {
+          "$ref": "#/definitions/kick.ChatMode"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChannelEmotesResponse": {
+      "properties": {
+        "channel": {
+          "items": {
+            "$ref": "#/definitions/kick.Emote"
+          },
+          "type": "array"
+        },
+        "emoji": {
+          "items": {
+            "$ref": "#/definitions/kick.Emote"
+          },
+          "type": "array"
+        },
+        "global": {
+          "items": {
+            "$ref": "#/definitions/kick.Emote"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChannelHit": {
+      "properties": {
+        "followers": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "live": {
+          "type": "boolean"
+        },
+        "profile_picture": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChannelLink": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "kind": {
+          "description": "Kind is \"link\" for a panel with a URL and \"text\" for one that is only\na title and description.",
+          "type": "string"
+        },
+        "order": {
+          "description": "Order is the position Kick shows the panel in; Kick numbers from 0 on\nsome channels and from 1 on others.",
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "description": "URL is empty for a text panel.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChannelLinksResponse": {
+      "properties": {
+        "links": {
+          "items": {
+            "$ref": "#/definitions/kick.ChannelLink"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChannelRef": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "profile_picture": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChannelResponse": {
+      "properties": {
+        "affiliate": {
+          "type": "boolean"
+        },
+        "banned": {
+          "type": "boolean"
+        },
+        "banner_url": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        },
+        "followers": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "live": {
+          "$ref": "#/definitions/kick.LiveStream"
+        },
+        "profile_picture": {
+          "type": "string"
+        },
+        "recent_categories": {
+          "items": {
+            "$ref": "#/definitions/kick.CategoryRef"
+          },
+          "type": "array"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "socials": {
+          "$ref": "#/definitions/kick.Socials"
+        },
+        "subscription_enabled": {
+          "type": "boolean"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean"
+        },
+        "vod_enabled": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChannelStreamsResponse": {
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "streams": {
+          "items": {
+            "$ref": "#/definitions/kick.StreamSession"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChannelVideosResponse": {
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "videos": {
+          "items": {
+            "$ref": "#/definitions/kick.Video"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ChatMode": {
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "interval_seconds": {
+          "description": "IntervalSeconds is the delay between a viewer's messages, for slow mode.",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Minutes is the minimum follow time or account age, in minutes, for\nfollowers-only and account-age modes; zero for the others.",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.Clip": {
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/kick.CategoryRef"
+        },
+        "channel": {
+          "$ref": "#/definitions/kick.ChannelRef"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "duration_seconds": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "likes": {
+          "type": "integer"
+        },
+        "mature": {
+          "type": "boolean"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "thumbnail_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "video_id": {
+          "type": "string"
+        },
+        "video_offset_seconds": {
+          "type": "integer"
+        },
+        "views": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ClipResponse": {
+      "properties": {
+        "clip": {
+          "$ref": "#/definitions/kick.Clip"
+        }
+      },
+      "type": "object"
+    },
+    "kick.ClipsResponse": {
+      "properties": {
+        "category": {
+          "description": "Category is the category slug a category clip list was read for.",
+          "type": "string"
+        },
+        "clips": {
+          "items": {
+            "$ref": "#/definitions/kick.Clip"
+          },
+          "type": "array"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.DirectoryStream": {
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/kick.CategoryRef"
+        },
+        "channel": {
+          "$ref": "#/definitions/kick.ChannelRef"
+        },
+        "id": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "mature": {
+          "type": "boolean"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "thumbnail_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "viewers": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.DropCampaign": {
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/kick.CategoryRef"
+        },
+        "channel_count": {
+          "type": "integer"
+        },
+        "channels": {
+          "items": {
+            "$ref": "#/definitions/kick.DropChannel"
+          },
+          "type": "array"
+        },
+        "ends_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization": {
+          "$ref": "#/definitions/kick.DropOrganization"
+        },
+        "rewards": {
+          "items": {
+            "$ref": "#/definitions/kick.DropReward"
+          },
+          "type": "array"
+        },
+        "rule": {
+          "type": "string"
+        },
+        "starts_at": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.DropChannel": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "profile_picture": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.DropOrganization": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "logo_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.DropReward": {
+      "properties": {
+        "category_id": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "required_units": {
+          "description": "RequiredUnits is Kick's threshold for the reward. For the\n\"Watch to redeem\" campaigns it reads as watch time (60, 120, 180 ...);\nKick does not state the unit.",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.DropsResponse": {
+      "properties": {
+        "campaigns": {
+          "items": {
+            "$ref": "#/definitions/kick.DropCampaign"
+          },
+          "type": "array"
+        },
+        "status": {
+          "type": "string"
+        },
+        "total": {
+          "description": "Total is the number of campaigns Kick lists in all (active and\nexpired); Campaigns holds those matching Status.",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.Emote": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subscribers_only": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "kick.Gift": {
+      "properties": {
+        "character_limit": {
+          "description": "CharacterLimit is the message length a level-up gift allows (0 = none).",
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "kicks": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pinned_seconds": {
+          "description": "PinnedSeconds is how long a level-up gift pins its message in chat.",
+          "type": "integer"
+        },
+        "tier": {
+          "description": "Tier is BASIC, MID or HIGHER; Type is BASIC or LEVEL_UP.",
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.GiftsResponse": {
+      "properties": {
+        "gifts": {
+          "items": {
+            "$ref": "#/definitions/kick.Gift"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "kick.Language": {
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.LanguagesResponse": {
+      "properties": {
+        "languages": {
+          "items": {
+            "$ref": "#/definitions/kick.Language"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "kick.LiveStream": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/kick.CategoryRef"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "mature": {
+          "type": "boolean"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "thumbnail_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "viewers": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.LivestreamsResponse": {
+      "properties": {
+        "category_id": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "livestreams": {
+          "items": {
+            "$ref": "#/definitions/kick.DirectoryStream"
+          },
+          "type": "array"
+        },
+        "next_cursor": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.SearchCategoriesResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/kick.CategoryHit"
+          },
+          "type": "array"
+        },
+        "query": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.SearchChannelsResponse": {
+      "properties": {
+        "channels": {
+          "items": {
+            "$ref": "#/definitions/kick.ChannelHit"
+          },
+          "type": "array"
+        },
+        "query": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.Socials": {
+      "properties": {
+        "discord": {
+          "type": "string"
+        },
+        "facebook": {
+          "type": "string"
+        },
+        "instagram": {
+          "type": "string"
+        },
+        "tiktok": {
+          "type": "string"
+        },
+        "twitter": {
+          "type": "string"
+        },
+        "youtube": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.StreamSession": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/kick.CategoryRef"
+          },
+          "type": "array"
+        },
+        "duration_ms": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "live": {
+          "type": "boolean"
+        },
+        "mature": {
+          "type": "boolean"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "thumbnail_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "video_url": {
+          "type": "string"
+        },
+        "video_uuid": {
+          "description": "VideoUUID, VideoViews and VideoURL describe the recording; empty when\nthe broadcast has none.",
+          "type": "string"
+        },
+        "video_views": {
+          "type": "integer"
+        },
+        "viewer_count": {
+          "description": "ViewerCount is the viewer figure Kick reports for the broadcast; the\nupstream does not say whether it is a peak or an average.",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.SubcategoriesResponse": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "reachable": {
+          "type": "integer"
+        },
+        "subcategories": {
+          "items": {
+            "$ref": "#/definitions/kick.Subcategory"
+          },
+          "type": "array"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.Subcategory": {
+      "properties": {
+        "banner_url": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "followers": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "mature": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "integer"
+        },
+        "parent_name": {
+          "type": "string"
+        },
+        "parent_slug": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        },
+        "viewers": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.SubcategoryResponse": {
+      "properties": {
+        "subcategory": {
+          "$ref": "#/definitions/kick.Subcategory"
+        }
+      },
+      "type": "object"
+    },
+    "kick.TopChannelsResponse": {
+      "properties": {
+        "channels": {
+          "items": {
+            "$ref": "#/definitions/kick.ChannelHit"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "kick.Video": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/kick.CategoryRef"
+          },
+          "type": "array"
+        },
+        "duration_ms": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "live": {
+          "type": "boolean"
+        },
+        "mature": {
+          "type": "boolean"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "thumbnail_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "views": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.VideoResponse": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/definitions/kick.CategoryRef"
+          },
+          "type": "array"
+        },
+        "channel": {
+          "$ref": "#/definitions/kick.ChannelRef"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "duration_ms": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "mature": {
+          "type": "boolean"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "thumbnail_url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "viewer_count": {
+          "type": "integer"
+        },
+        "views": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "kick.categoriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.CategoriesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.categoryClipsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ClipsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.channelChatroomResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ChannelChatroomResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.channelClipsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ClipsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.channelEmotesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ChannelEmotesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.channelLinksResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ChannelLinksResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.channelResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ChannelResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.channelStreamsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ChannelStreamsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.channelVideosResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ChannelVideosResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.clipResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ClipResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.clipsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.ClipsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.dropsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.DropsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.giftsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.GiftsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.languagesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.LanguagesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.livestreamsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.LivestreamsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.searchCategoriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.SearchCategoriesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.searchChannelsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.SearchChannelsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.subcategoriesResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.SubcategoriesResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.subcategoryResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.SubcategoryResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.topChannelsResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.TopChannelsResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "kick.videoResponseDoc": {
+      "properties": {
+        "code": {
+          "example": 200,
+          "type": "integer"
+        },
+        "data": {
+          "$ref": "#/definitions/kick.VideoResponse"
+        },
+        "msg": {
+          "example": "OK",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "host": "api.crawlora.net",
+  "info": {
+    "contact": {
+      "email": "support@crawlora.net",
+      "name": "API Support",
+      "url": "https://crawlora.net"
+    },
+    "description": "Crawlora is a hosted web-data and SERP API: call documented REST endpoints and get normalized JSON instead of HTML to parse — across search/SERP, maps and local, e-commerce, app stores, social, media and finance. One API key; Crawlora runs the proxy rotation, headless browsers and parsing behind the scenes. Billed pay-on-success: charged only on a successful 2xx response, 1-10 credits per call, with a free tier of 2,000 credits per month and no card. A hosted MCP server (mcp.crawlora.net/mcp) exposes the same catalog as agent tools. Search endpoints accept `q` as a universal alias for whichever search-term parameter they document (`query`, `term`, `keyword`, or Amazon's `k`), so one parameter name works across the whole catalog; an explicitly supplied documented name always wins.",
+    "license": {
+      "name": "Crawlora Terms of Service",
+      "url": "https://crawlora.net/terms"
+    },
+    "termsOfService": "https://crawlora.net/terms",
+    "title": "Crawlora API",
+    "version": "1.2",
+    "x-logo": {
+      "altText": "Crawlora",
+      "backgroundColor": "#FFFFFF",
+      "url": "https://raw.githubusercontent.com/Crawlora-org/crawlora-mcp/main/assets/logo-400x400.png"
+    }
+  },
+  "paths": {
+    "/kick/categories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Kick's top-level categories (Games, IRL, Music, Gambling, Creative, Alternative, Chat Roulette) with id, name, slug and icon. These slugs are the exact values the category parameter of kick-subcategories takes. Kick's website and its mobile app each list one parent the other omits (Gambling and Chat Roulette), so this call reads both and returns their union; icon is empty for a category only the app lists. The lists are read live from Kick.",
+        "operationId": "kick-categories",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.categoriesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Kick's top-level categories",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/category-clips": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one page of 20 clips made in a Kick (kick.com) game or activity category, newest first: id, title, kick.com link, thumbnail, views, likes, duration in seconds, creation time, mature flag, category, the channel it came from, with a cursor for the next page. slug is a category slug from kick-subcategories such as just-chatting; a top-level category such as games has no clip page and returns not found. Only public data is read and no playable media is returned.",
+        "operationId": "kick-category-clips",
+        "parameters": [
+          {
+            "description": "Category slug from kick-subcategories or kick-search-categories, lowercase; a kick.com/category URL is also accepted",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "just-chatting"
+          },
+          {
+            "description": "Previous response's next_cursor; omit for the newest page",
+            "in": "query",
+            "name": "cursor",
+            "type": "string",
+            "x-example": "clip_01M5TR7FRZPCDA6BS1NP7HKV4T"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.categoryClipsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List the newest clips in a Kick category",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/channel": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a Kick (kick.com) channel's public profile and, when it is live, its current broadcast: username, bio, verification and affiliate flags, follower count, linked social handles, profile and banner images, recent categories, and a live object with title, viewers, start time, language, tags and categories (omitted when the channel is offline). slug is the channel slug from its kick.com address, case-insensitive; a full kick.com URL is also accepted. Playable stream URLs are never returned. An unknown channel returns not found.",
+        "operationId": "kick-channel",
+        "parameters": [
+          {
+            "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "xqc"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.channelResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Kick channel profile and live state",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/channel-chatroom": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a Kick (kick.com) channel's chat restrictions and rules: slow mode (delay between messages), subscribers-only, followers-only (minimum follow time), emotes-only and minimum account age, whether gifts are enabled, and the channel's chat rules text. slug is the channel slug from its kick.com address, case-insensitive; a full kick.com URL is also accepted. The pinned message is not returned. This call reads two Kick pages. An unknown channel returns not found.",
+        "operationId": "kick-channel-chatroom",
+        "parameters": [
+          {
+            "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "xqc"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.channelChatroomResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Kick channel's chat settings and rules",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/channel-clips": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one page of 20 clips from a Kick channel, newest first: id, title, kick.com link, thumbnail, views, likes, duration in seconds, creation time, mature flag, category, the viewer who made the clip and the channel. Page onward by passing the previous response's next_cursor as cursor; next_cursor is empty on the last page. Playable clip URLs are never returned. An unknown channel returns not found.",
+        "operationId": "kick-channel-clips",
+        "parameters": [
+          {
+            "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "xqc"
+          },
+          {
+            "description": "Previous response's next_cursor; omit for the newest page",
+            "in": "query",
+            "name": "cursor",
+            "type": "string",
+            "x-example": "abc"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.channelClipsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Kick channel's clips",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/channel-emotes": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the chat emote sets available in a Kick (kick.com) channel: the channel's own custom emotes (id, name, whether subscribers only, image link), plus the Global and Emoji sets that every channel shares. slug is the channel slug from its kick.com address, case-insensitive; a full kick.com URL is also accepted. A channel with no custom emotes returns an empty channel set. Only public data is read and no playable media is returned. An unknown channel returns not found.",
+        "operationId": "kick-channel-emotes",
+        "parameters": [
+          {
+            "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "xqc"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.channelEmotesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List the chat emotes a Kick channel offers",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/channel-links": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the panels a Kick (kick.com) channel shows under its stream, in the order Kick shows them: link panels (tip pages, merch, social profiles) with title, description, URL and image, and text panels (FAQ, rules, disclaimers) that are only a title and description. slug is the channel slug from its kick.com address, case-insensitive; a full kick.com URL is also accepted. Only public data is read and no playable media is returned. An unknown channel returns not found.",
+        "operationId": "kick-channel-links",
+        "parameters": [
+          {
+            "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "xqc"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.channelLinksResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Kick channel's link panels",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/channel-streams": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a Kick (kick.com) channel's recent broadcast history, newest first: id, title, start time, duration in milliseconds, the viewer count Kick reports for the broadcast, language, mature flag, tags, categories, thumbnail, and for broadcasts with a recording its video uuid, video views and kick.com video link. slug is the channel slug from its kick.com address, case-insensitive; a full kick.com URL is also accepted. Kick keeps between none and about thirty broadcasts. Only public data is read and no playable media is returned. An unknown channel returns not found.",
+        "operationId": "kick-channel-streams",
+        "parameters": [
+          {
+            "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "xqc"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.channelStreamsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Kick channel's recent broadcast history",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/channel-videos": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns a Kick channel's recent past broadcasts (VODs), newest first: id, uuid, title, start time, duration in milliseconds, views, language, mature flag, tags, categories, thumbnail and the kick.com video link. Kick returns a fixed window of recent videos (26 at the time of writing) with no paging, so this call takes only the channel slug. Playable stream sources are never returned. An unknown channel returns not found.",
+        "operationId": "kick-channel-videos",
+        "parameters": [
+          {
+            "description": "Channel slug from kick.com/{slug}, case-insensitive; a kick.com URL is also accepted",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "xqc"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.channelVideosResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List a Kick channel's recent past broadcasts",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/clip": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Kick clip by id: title, kick.com link, thumbnail, views, duration, creation time, the moment it starts inside the source broadcast, mature flag, category and channel. id is a clip id such as clip_01M5SKVA6GGAAAT5YPJ7J43WE4, from the id field of kick-channel-clips or kick-clips. A malformed id returns a 400 and an unknown clip returns not found. Playable clip URLs are never returned.",
+        "operationId": "kick-clip",
+        "parameters": [
+          {
+            "description": "Clip id from kick-clips' or kick-channel-clips' own clips[].id field",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "clip_01M5SKVA6GGAAAT5YPJ7J43WE4"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.clipResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get one Kick clip",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/clips": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one page of 20 clips from across all of Kick, either newest first (sort=date, the default) or ranked by views inside a time window (sort=views with time=day, week, month or all). Each clip has its id, title, kick.com link, thumbnail, views, duration, category and channel. Page onward by passing the previous response's next_cursor as cursor. Playable clip URLs are never returned. Use kick-channel-clips for one channel's clips.",
+        "operationId": "kick-clips",
+        "parameters": [
+          {
+            "description": "Ordering: date is newest first (default), views ranks by views inside the time window",
+            "enum": [
+              "date",
+              "views"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string",
+            "x-example": "views"
+          },
+          {
+            "description": "Window that views ranks within; omit for Kick's default window",
+            "enum": [
+              "day",
+              "week",
+              "month",
+              "all"
+            ],
+            "in": "query",
+            "name": "time",
+            "type": "string",
+            "x-example": "week"
+          },
+          {
+            "description": "Previous response's next_cursor; omit for the first page",
+            "in": "query",
+            "name": "cursor",
+            "type": "string",
+            "x-example": "abc"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.clipsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Kick's site-wide clips",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/drops": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Kick (kick.com) Drops campaigns, publisher-sponsored rewards that viewers earn by watching, newest first: id, name, status, start and end time, campaign page, the rule (for example Watch to redeem), the publisher with its logo, the game or activity category, every reward with the watch threshold that earns it and its image, and the channels taking part. status is active (the default), expired or all. Only public campaign information is read; no account or progress data.",
+        "operationId": "kick-drops",
+        "parameters": [
+          {
+            "description": "Which campaigns to return: active (default), expired or all",
+            "enum": [
+              "active",
+              "expired",
+              "all"
+            ],
+            "in": "query",
+            "name": "status",
+            "type": "string",
+            "x-example": "active"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.dropsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Kick Drops campaigns",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/gifts": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the catalog of gifts viewers can send on Kick (kick.com) with Kicks, Kick's virtual currency: gift id, name, price in Kicks, tier (BASIC, MID or HIGHER), type (BASIC or LEVEL_UP), and for level-up gifts the message length they allow and how long they pin the message in chat. This call takes no parameters.",
+        "operationId": "kick-gifts",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.giftsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List the gifts viewers can send on Kick",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/languages": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the stream languages Kick shows in its own language picker, each with its code and display name (67 at the time of writing). These codes are all accepted by the language parameter of kick-livestreams, which also accepts further ISO-style codes the picker does not list. The list is read live from Kick, so it follows any language Kick adds.",
+        "operationId": "kick-languages",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.languagesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Kick stream languages",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/livestreams": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one page of Kick's live-stream directory: title, viewer count, start time, language, mature flag, tags, category, thumbnail and the channel for each live broadcast. sort is viewer_count_desc (the default, most viewers first) or featured. language filters to one stream language by code (kick-languages lists the languages Kick shows in its own picker; the directory accepts a wider range of codes than that list, and an unrecognized code returns a 400), and category_id filters to one category by the numeric id from kick-subcategories or kick-search-categories. limit is 1 to 100 (default 24). Page onward by passing the previous response's next_cursor as after; next_cursor is empty on the last page.",
+        "operationId": "kick-livestreams",
+        "parameters": [
+          {
+            "description": "Ordering: viewer_count_desc is most viewers first (default), featured is Kick's featured order",
+            "enum": [
+              "viewer_count_desc",
+              "featured"
+            ],
+            "in": "query",
+            "name": "sort",
+            "type": "string",
+            "x-example": "viewer_count_desc"
+          },
+          {
+            "description": "Stream language code such as en, ja, es, pt-BR, optionally with a region (2 to 3 letters, then an optional 2 to 4 letter region); see kick-languages for the codes Kick lists",
+            "in": "query",
+            "name": "language",
+            "type": "string",
+            "x-example": "ja"
+          },
+          {
+            "description": "Category id from kick-subcategories' or kick-search-categories' own id field",
+            "in": "query",
+            "name": "category_id",
+            "type": "integer",
+            "x-example": 15
+          },
+          {
+            "description": "Page size, 1 to 100; defaults to 24",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 24
+          },
+          {
+            "description": "Previous response's next_cursor; omit for the first page",
+            "in": "query",
+            "name": "after",
+            "type": "string",
+            "x-example": "eyJvIjoxfQ"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.livestreamsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List live broadcasts on Kick",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/search-categories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Kick's game and activity categories by name and returns each match's id, name, slug, tags, mature flag, current viewers, thumbnail and kick.com link. query is required and at most 100 characters; limit is 1 to 100 (default 10). Use this to find categories outside the first pages that kick-subcategories can reach. A search with no matches returns an empty list.",
+        "operationId": "kick-search-categories",
+        "parameters": [
+          {
+            "description": "Category name to search for, up to 100 characters",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string",
+            "x-example": "chat"
+          },
+          {
+            "description": "Maximum results, 1 to 100; defaults to 10",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.searchCategoriesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Kick categories",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/search-channels": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Searches Kick channels by name and returns each match's id, slug, username, follower count, live flag, verification and kick.com link, most relevant first. query is required and at most 100 characters. live=true restricts to channels that are broadcasting now. limit is 1 to 100 (default 10). A search with no matches returns an empty list.",
+        "operationId": "kick-search-channels",
+        "parameters": [
+          {
+            "description": "Channel name to search for, up to 100 characters",
+            "in": "query",
+            "name": "query",
+            "required": true,
+            "type": "string",
+            "x-example": "xqc"
+          },
+          {
+            "description": "Only channels live now",
+            "in": "query",
+            "name": "live",
+            "type": "boolean",
+            "x-example": true
+          },
+          {
+            "description": "Maximum results, 1 to 100; defaults to 10",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.searchChannelsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Kick channels",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/subcategories": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one page of Kick's game and activity categories (Just Chatting, Grand Theft Auto V, ...) ordered by current viewers: id, name, slug, parent category, tags, viewers, mature flag, banner and kick.com link. category restricts to one top-level category by slug from kick-categories (a parent Kick adds later is accepted too). page is 1 to 20 and limit is 1 to 32 (default 24) because Kick silently caps both; total is the size of the whole catalog (over 18,000) while reachable is how many entries these limits can reach, so use kick-search-categories to find a category outside the first pages.",
+        "operationId": "kick-subcategories",
+        "parameters": [
+          {
+            "description": "Top-level category slug from kick-categories; a parent Kick adds later is also accepted once it appears there",
+            "enum": [
+              "games",
+              "irl",
+              "music",
+              "gambling",
+              "creative",
+              "alternative",
+              "chat-roulette"
+            ],
+            "in": "query",
+            "name": "category",
+            "type": "string",
+            "x-example": "irl"
+          },
+          {
+            "description": "Page number, 1 to 20; defaults to 1",
+            "in": "query",
+            "name": "page",
+            "type": "integer",
+            "x-example": 1
+          },
+          {
+            "description": "Page size, 1 to 32; defaults to 24",
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "x-example": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.subcategoriesResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Kick's game and activity categories",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/subcategory": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Kick game or activity category by slug: id, name, parent category, tags, description, current viewers, follower count, mature flag, banner and kick.com link. slug comes from kick-subcategories or kick-search-categories. An unknown slug returns not found.",
+        "operationId": "kick-subcategory",
+        "parameters": [
+          {
+            "description": "Category slug from kick-subcategories' or kick-search-categories' own slug field",
+            "in": "query",
+            "name": "slug",
+            "required": true,
+            "type": "string",
+            "x-example": "just-chatting"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.subcategoryResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get one Kick category",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/top-channels": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns Kick's top-channels list (30 at the time of writing) ranked by followers: id, slug, username, follower count, live flag, verification, profile picture and kick.com link. The list takes no parameters.",
+        "operationId": "kick-top-channels",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.topChannelsResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List Kick's top channels",
+        "tags": [
+          "kick"
+        ]
+      }
+    },
+    "/kick/video": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns one Kick (kick.com) past broadcast looked up by its recording's uuid, without needing the channel: uuid, title, start time, duration in milliseconds, the viewer count Kick reports, views, status, language, mature flag, tags, categories, thumbnail, the owning channel and the kick.com video link. id is the uuid from kick-channel-videos or kick-channel-streams, or a kick.com video URL. Only public data is read and no playable media is returned. An unknown video returns not found.",
+        "operationId": "kick-video",
+        "parameters": [
+          {
+            "description": "Video uuid (36 characters) from kick-channel-videos or kick-channel-streams, or a kick.com video URL",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "x-example": "eb707c31-208b-4737-8bcf-a5c9fd187e82"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kick.videoResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "429": {
+            "description": "Too Many Requests",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Kick video by its uuid",
+        "tags": [
+          "kick"
+        ]
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "in": "header",
+      "name": "x-api-key",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "tags": [
+    {
+      "name": "kick"
+    }
+  ]
+}
