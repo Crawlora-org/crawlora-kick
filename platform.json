@@ -1,4 +1,5 @@
 {
+  "api_path_prefix": "/kick/",
   "async_class_name": "AsyncKickClient",
   "class_name": "KickClient",
   "contract_revision": "sha256:21aa0d1aad656980f5ea6effcebad59951eac7af94ef33ab23888a3707f0ba5a",
